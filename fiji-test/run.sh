@@ -173,7 +173,7 @@ echo "INTERACTIVE_SESSION_ADDRESS is $INTERACTIVE_SESSION_ADDRESS"
 # Notification is sent to _INTERACTIVE_WEBHOOK_URL, e.g. https://3dem.org/webhooks/interactive/
 curl -k --data "event_type=interactive_session_ready&address=${INTERACTIVE_SESSION_ADDRESS}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" "${_INTERACTIVE_WEBHOOK_URL}" &
 
-# Set values for ImageJ config file
+# Set values for ImageJ config file based on job parameters
 cat > /tmp/ImageJ.cfg <<EOF
 .
 
