@@ -174,21 +174,19 @@ echo "INTERACTIVE_SESSION_ADDRESS is $INTERACTIVE_SESSION_ADDRESS"
 curl -k --data "event_type=interactive_session_ready&address=${INTERACTIVE_SESSION_ADDRESS}&owner=${_tapisJobOwner}&job_uuid=${_tapisJobUUID}" "${_INTERACTIVE_WEBHOOK_URL}" &
 
 # Set values for ImageJ config file based on job parameters
+TOTAL_PROCS=$(($_tapisCoresPerNode * $_tapisNodes))
+MEM_CMD="$_tapisMemoryMB * $_tapisNodes * .75 / 1"
+TOTAL_MEM="$(bc <<< $MEM_CMD)"
+
 cat > /tmp/ImageJ.cfg <<EOF
 .
 
--XX:ActiveProcessorCount=${_tapisCoresPerNode} -Xmx${_tapisMemoryMB}m -cp ij.jar ij.ImageJ
+-XX:ActiveProcessorCount=${TOTAL_PROCS} -Xmx${TOTAL_MEM}m -cp ij.jar ij.ImageJ
 EOF
 
 # Run an xterm and launch $_XTERM_CMD for the user; execution will hold here.
 export DISPLAY
 xterm -r -ls -geometry 80x24+10+10 -title '*** Exit this window to kill your interactive session ***' -e "${_XTERM_CMD}"
-
-# Print info about jvm
-jps -lvm
-
-# Print ImageJ config file
-# cat /opt/fiji/Fiji.app/ImageJ.cfg
 
 # Job is done!
 

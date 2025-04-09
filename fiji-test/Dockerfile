@@ -1,4 +1,4 @@
-FROM eriksf/fiji:openjdk-8-ui
+FROM jlabyer/fiji-openjdk-8-ui:1.0.0
 
 # This softlink is necessary because the normal config file location is not editable because Tapis
 # containers are read-only. Some variables in the config file must be updated with parameters from the job,
@@ -13,4 +13,4 @@ RUN chmod +x /tapis/run.sh
 
 ENTRYPOINT [ "/tapis/run.sh" ]
 
-CMD ["1280x800"]
+CMD [ "1280x800" ]
