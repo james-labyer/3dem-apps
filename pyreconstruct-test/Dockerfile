@@ -45,9 +45,9 @@ RUN apt-get update && \
 
 WORKDIR /app
 
-COPY ./PyReconstruct /app/PyReconstruct/
+COPY ./PyReconstruct/requirements.txt /app/requirements.txt
 
-WORKDIR /app/PyReconstruct/dev
+COPY ./environment.yaml /app/environment.yaml
 
 # CONDA_DIR is exported in base image
 RUN source ${CONDA_DIR}/bin/activate \
@@ -55,10 +55,14 @@ RUN source ${CONDA_DIR}/bin/activate \
 
 ARG ENV_NAME=pyrecon_dev
 
-RUN conda env create -f environment_dev.yaml \
+RUN conda env create -f environment.yaml \
     && echo "conda activate ${ENV_NAME}" >> /etc/skel/.bashrc \
     && echo "conda activate ${ENV_NAME}" >> ~/.bashrc
 
 ENV PATH=/opt/conda/envs/${ENV_NAME}/bin:$PATH
 
-ENTRYPOINT [ "python", "../PyReconstruct/run.py" ]
+COPY ./run.sh /tapis/run.sh
+
+RUN chmod +x /tapis/run.sh
+
+ENTRYPOINT [ "/tapis/run.sh" ]

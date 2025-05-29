@@ -1,0 +1,30 @@
+name: pyrecon_edge
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - setuptools
+  - psycopg2
+  - conda-build
+  - lxml=5.2.2
+  - scikit-image=0.25.2
+  - libstdcxx-ng=13
+  - pillow=10.3.0
+  - numpy=1.24.1
+  - vtk=9.3.1
+  - pyside6=6.5.3
+  - qt-main=5.15.8
+  - qt6-main=6.5.3
+  - numcodecs=0.15.0
+  - trimesh=3.18.1
+  - vedo=2025.5.3
+  - zarr=2.18.2
+  - lxml=5.2.2
+  - gitpython=3.1.43
+  - qdarkstyle=3.2.3
+  - tifffile=2024.9.20
+  - scipy=1.14.1 
+  - pip:
+    - "-r ./requirements.txt"
+    - git+https://github.com/funkelab/funlib.show.neuroglancer
