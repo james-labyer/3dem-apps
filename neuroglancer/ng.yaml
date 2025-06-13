@@ -1,0 +1,9 @@
+name: ng
+channels:
+  - conda-forge
+dependencies:
+  - jupyter=1.1.1
+  - firefox=139.0.1
+  - gtk3=3.24.43
+  - pip:
+    - neuroglancer==2.40.1
