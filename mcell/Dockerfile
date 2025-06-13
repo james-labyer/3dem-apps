@@ -2,6 +2,7 @@ FROM nvidia/cuda:12.8.0-cudnn-runtime-ubuntu22.04
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+# Downloaded MCell/CellBlender v4.1.0 bundled with Blender 4.4.3 for Debian 12 from https://mcell.org/download.html
 COPY ./Blender-4.4.3-CellBlender-4.1.0-Python-3.11.11-Debian-12-x86_64-20250507.tar.gz /tmp/
 
 RUN mkdir /app/ \ 
@@ -28,6 +29,7 @@ RUN apt update && apt install -y build-essential \
     libxext6 \
     libxrender-dev
 
+# Downloaded from https://github.com/mcellteam/neuropil_tools/releases/tag/4.1.0
 COPY ./neuropil_tools.zip /app/
 
 COPY ./settings.py /app/Blender-4.4.3-CellBlender/4.4/scripts/startup/
