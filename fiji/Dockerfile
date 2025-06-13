@@ -1,3 +1,4 @@
+# Source image based on the Dockerfile in this repo https://github.com/eriksf/fiji-openjdk-8-ui
 FROM jlabyer/fiji-openjdk-8-ui:1.0.0
 
 # This softlink is necessary because the normal config file location is not editable because Tapis
