@@ -53,4 +53,4 @@ RUN conda env create -f /tmp/napari.yml -p ${ENV_NAME} \
 
 ENV PATH=${ENV_NAME}/bin:$PATH
 
-ENTRYPOINT ["conda", "activate", "/app/napari", "&&", "napari"]
+ENTRYPOINT ["napari"]

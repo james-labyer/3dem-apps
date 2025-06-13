@@ -1,0 +1,12 @@
+prefix: /app/napari
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - napari=0.6.1
+  - pyqt=5.15.11
+  - micro_sam=1.5.0
+  - pip
+  - pip:
+    - pssr==2.4.0
+    - napari-bootstrapper==0.2.0
